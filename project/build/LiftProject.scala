@@ -7,17 +7,19 @@ import com.github.olim7t.sbtscalariform._
 class LiftProject(info: ProjectInfo) extends DefaultWebProject(info) 
 with CodeFellowPlugin 
 with ScalariformPlugin
+with Eclipsify 
 with IdeaProject {
   val liftVersion = "2.1-SNAPSHOT"
 
   val snapshots = ScalaToolsSnapshots
 
-
-    override def managedStyle = ManagedStyle.Maven
-    override def jettyWebappPath = webappPath
-    override def scanDirectories = Nil 
+  override def managedStyle = ManagedStyle.Maven
+  override def jettyWebappPath = webappPath
+  override def scanDirectories = Nil 
 
   lazy val subProject = project("subproject", "subproject", new DefaultProject(_) with IdeaProject) 
+
+  override def scalariformOptions = Seq(DoubleIndentClassDeclaration(true), IndentSpaces(2))
 
   override def libraryDependencies = Set(
     "net.liftweb" % "lift-webkit_2.8.0" % liftVersion % "compile->default",

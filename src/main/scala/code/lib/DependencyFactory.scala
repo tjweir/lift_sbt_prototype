@@ -14,6 +14,7 @@ package code {
      * or override the default implementation on a session, request or current call
      * stack basis.
      */
+
     object DependencyFactory extends Factory {
       implicit object time extends FactoryMaker(Helpers.now _)
 
@@ -30,28 +31,30 @@ package code {
     }
 
     /*
-/**
- * Examples of changing the implementation
- */
-sealed abstract class Changer {
-  def changeDefaultImplementation() {
-    DependencyFactory.time.default.set(() => new Date())
-  }
+    /**
+    * Examples of changing the implementation
+    */
 
-  def changeSessionImplementation() {
-    DependencyFactory.time.session.set(() => new Date())
-  }
 
-  def changeRequestImplementation() {
-    DependencyFactory.time.request.set(() => new Date())
-  }
+    sealed abstract class Changer {
+      def changeDefaultImplementation ( )  {
+        DependencyFactory.time.default.set(() => new Date())
+      }
 
-  def changeJustForCall(d: Date) {
-    DependencyFactory.time.doWith(d) {
-      // perform some calculations here
+      def changeSessionImplementation() {
+        DependencyFactory.time.session.set(() => new Date())
+      }
+
+      def changeRequestImplementation() {
+        DependencyFactory.time.request.set(() => new Date())
+      }
+
+      def changeJustForCall(d: Date) {
+        DependencyFactory.time.doWith(d) {
+          // perform some calculations here
+        }
+      }
     }
-  }
-}
-*/
+    */
   }
 }

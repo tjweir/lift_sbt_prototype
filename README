@@ -18,10 +18,12 @@ http://localhost:8080/
 
 Voila a running Lift app
 
+[Tyler's changes]
 Added SBT plugins for:
-- Eclipse Project Generation
-- IDEA Project Generation
-- Scalariform Source Formatting
-- Vim CodeFellow plugin
+- Eclipse Project Generation ( http://github.com/musk/SbtEclipsify ) 
+- IDEA Project Generation ( http://github.com/mpeltonen/sbt-idea-plugin ) 
+- Scalariform Source Formatting ( http://github.com/mdr/scalariform )
+- Vim CodeFellow plugin ( http://github.com/tjweir/codefellow )
 
+Update to Lift 2.1-SNAPSHOT.
 

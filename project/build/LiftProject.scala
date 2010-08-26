@@ -10,9 +10,13 @@ with ScalariformPlugin
 with IdeaProject {
   val liftVersion = "2.1-SNAPSHOT"
 
+  val snapshots = ScalaToolsSnapshots
+
+
     override def managedStyle = ManagedStyle.Maven
     override def jettyWebappPath = webappPath
     override def scanDirectories = Nil 
+
   lazy val subProject = project("subproject", "subproject", new DefaultProject(_) with IdeaProject) 
 
   override def libraryDependencies = Set(

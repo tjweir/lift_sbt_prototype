@@ -17,3 +17,11 @@ Point your browser to:
 http://localhost:8080/
 
 Voila a running Lift app
+
+Added SBT plugins for:
+- Eclipse Project Generation
+- IDEA Project Generation
+- Scalariform Source Formatting
+- Vim CodeFellow plugin
+
+

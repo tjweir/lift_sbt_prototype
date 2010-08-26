@@ -12,7 +12,6 @@ import mapper._
 
 import code.model._
 
-
 /**
  * A class that's instantiated early and run.  It allows the application
  * to modify lift's environment
@@ -20,11 +19,11 @@ import code.model._
 class Boot {
   def boot {
     if (!DB.jndiJdbcConnAvailable_?) {
-      val vendor = 
-	new StandardDBVendor(Props.get("db.driver") openOr "org.h2.Driver",
-			     Props.get("db.url") openOr 
-			     "jdbc:h2:lift_proto.db;AUTO_SERVER=TRUE",
-			     Props.get("db.user"), Props.get("db.password"))
+      val vendor =
+        new StandardDBVendor(Props.get("db.driver") openOr "org.h2.Driver",
+          Props.get("db.url") openOr
+          "jdbc:h2:lift_proto.db;AUTO_SERVER=TRUE",
+          Props.get("db.user"), Props.get("db.password"))
 
       LiftRules.unloadHooks.append(vendor.closeAllConnections_! _)
 
@@ -45,19 +44,19 @@ class Boot {
 
       // more complex because this menu allows anything in the
       // /static path to be visible
-      Menu(Loc("Static", Link(List("static"), true, "/static/index"), 
-	       "Static Content"))) :::
-    // the User management menu items
-    User.sitemap
+      Menu(Loc("Static", Link(List("static"), true, "/static/index"),
+        "Static Content"))) :::
+      // the User management menu items
+      User.sitemap
 
     // set the sitemap.  Note if you don't want access control for
     // each page, just comment this line out.
-    LiftRules.setSiteMap(SiteMap(entries:_*))
+    LiftRules.setSiteMap(SiteMap(entries: _*))
 
     //Show the spinny image when an Ajax call starts
     LiftRules.ajaxStart =
       Full(() => LiftRules.jsArtifacts.show("ajax-loader").cmd)
-    
+
     // Make the spinny image go away when it ends
     LiftRules.ajaxEnd =
       Full(() => LiftRules.jsArtifacts.hide("ajax-loader").cmd)
